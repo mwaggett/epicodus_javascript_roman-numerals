@@ -1,5 +1,63 @@
-// describe('functionName', function() {
-//   it("plain English description of spec", function() {
-//     expect(functionName(argument)).to.equal(value);
+describe('romanNumeralsMap', function() {
+  it("returns basic symbol associated with a number when .get(number) is called on it", function() {
+    expect(romanNumeralsMap().get(5)).to.equal("V");
+  });
+});
+
+describe('getThousands', function() {
+  it("returns how many thousands are in input number", function() {
+    expect(getThousands(2805)).to.equal(2);
+  });
+});
+
+describe('getFiveHundreds', function() {
+  it("returns how many five hundreds are in input number", function() {
+    expect(getFiveHundreds(805)).to.equal(1);
+  });
+});
+
+describe('getHundreds', function() {
+  it("returns how many hundreds are in input number", function() {
+    expect(getHundreds(305)).to.equal(3);
+  });
+});
+
+describe('getFifties', function() {
+  it("returns how many fifties are in input number", function() {
+    expect(getFifties(42)).to.equal(0);
+  });
+});
+
+describe('getTens', function() {
+  it("returns how many tens are in input number", function() {
+    expect(getTens(42)).to.equal(4);
+  });
+});
+
+describe('getFives', function() {
+  it("returns how many fives are in input number", function() {
+    expect(getFives(9)).to.equal(1);
+  });
+});
+
+describe('getOnes', function() {
+  it("returns how many ones are in input number", function() {
+    expect(getOnes(2)).to.equal(2);
+  });
+});
+
+describe('convertNumberToNumerals', function() {
+  it("converts number into roman numerals without following subtraction rule i.e. can have four in a row", function() {
+    expect(convertNumberToNumerals(90)).to.equal("LXXXX");
+  });
+
+  it("converts number into roman numerals without following subtraction rule i.e. can have four in a row", function() {
+    expect(convertNumberToNumerals(66)).to.equal("LXVI");
+  });
+});
+
+// describe('romanNumeralsCheckFourInARow', function() {
+//   it("checks for more than three of the same character in a row", function() {
+//     expect(romanNumeralsMap().get(IIII)).to.equal("IV");
 //   });
 // });
