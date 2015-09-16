@@ -7,6 +7,13 @@ var romanNumeralsMap = function() {
   romanNumerals.set(100, "C");
   romanNumerals.set(500, "D");
   romanNumerals.set(1000, "M");
+  romanNumerals.set("I", 1);
+  romanNumerals.set("V", 5);
+  romanNumerals.set("X", 10);
+  romanNumerals.set("L", 50);
+  romanNumerals.set("C", 100);
+  romanNumerals.set("D", 500);
+  romanNumerals.set("M", 1000);
   return romanNumerals;
 };
 
@@ -115,20 +122,45 @@ var convertNumberToNumerals = function(number) {
 
 var fourInARow = function(numeralString) {
   var sameSymbolInARow = 1;
+  var indexOfFirstOfFourInARow = 0;
   for (var i = 0; i < numeralString.length - 1; i++) {
     if (numeralString[i] === numeralString[i+1]) {
         sameSymbolInARow++;
       if (sameSymbolInARow > 3) {
-        return true;
+        return indexOfFirstOfFourInARow;
       }
     } else {
       sameSymbolInARow = 1;
+      indexOfFirstOfFourInARow = i+1;
     }
   }
-  return false;
+  return null;
+}
+
+var convertFourInARow = function(numeralString) {
+  var i = fourInARow(numeralString);
+  var previousSymbol = numeralString[i-1];
+  if (previousSymbol === romanNumeralsMap().get(5*romanNumeralsMap().get(numeralString[i]))) {
+    var fourToReplace = numeralString[i-1]+numeralString[i]+numeralString[i]+numeralString[i]+numeralString[i];
+    var replacementString = numeralString[i]+romanNumeralsMap().get(romanNumeralsMap().get(numeralString[i])*10)
+  } else {
+    var fourToReplace = numeralString[i]+numeralString[i]+numeralString[i]+numeralString[i];
+    var replacementString = numeralString[i]+romanNumeralsMap().get(romanNumeralsMap().get(numeralString[i])*5)
+  }
+  var romanNumerals = numeralString.replace(fourToReplace, replacementString);
+  return romanNumerals;
 }
 
 
-// $(document).ready(function() {
-//
-// });
+$(document).ready(function() {
+  $("form#getNumber").submit(function(event) {
+    var number = parseInt($("input#number").val());
+
+    //var result = romanNumeral(number);
+
+    $(".output").text(result);
+
+    $("#result").show();
+    event.preventDefault();
+  });
+});

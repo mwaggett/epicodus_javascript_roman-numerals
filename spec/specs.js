@@ -2,6 +2,10 @@ describe('romanNumeralsMap', function() {
   it("returns basic symbol associated with a number when .get(number) is called on it", function() {
     expect(romanNumeralsMap().get(5)).to.equal("V");
   });
+
+  it("returns basic number associated with a symbol when .get(symbol) is called on it", function() {
+    expect(romanNumeralsMap().get("V")).to.equal(5);
+  });
 });
 
 describe('getThousands', function() {
@@ -58,14 +62,23 @@ describe('convertNumberToNumerals', function() {
 
 describe('fourInARow', function() {
   it("returns true when there's more than three of the same character in a row", function() {
-    expect(fourInARow("IIII")).to.equal(true);
+    expect(fourInARow("IIII")).to.equal(0);
   });
 
   it("returns true when there's more than three of the same character in a row", function() {
-    expect(fourInARow("LXXXXVII")).to.equal(true);
+    expect(fourInARow("LXXXXVII")).to.equal(1);
   });
 
   it("returns false for less than four of the same character in a row", function() {
-    expect(fourInARow("XXVII")).to.equal(false);
+    expect(fourInARow("XXVII")).to.equal(null);
+  });
+});
+
+describe('convertFourInARow', function() {
+  it("converts IIII to IV", function() {
+    expect(convertFourInARow("IIII")).to.equal("IV");
+  });
+  it("converts VIIII to IX", function() {
+    expect(convertFourInARow("VIIII")).to.equal("IX");
   });
 });
