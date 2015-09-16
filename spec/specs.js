@@ -56,8 +56,16 @@ describe('convertNumberToNumerals', function() {
   });
 });
 
-// describe('romanNumeralsCheckFourInARow', function() {
-//   it("checks for more than three of the same character in a row", function() {
-//     expect(romanNumeralsMap().get(IIII)).to.equal("IV");
-//   });
-// });
+describe('fourInARow', function() {
+  it("returns true when there's more than three of the same character in a row", function() {
+    expect(fourInARow("IIII")).to.equal(true);
+  });
+
+  it("returns true when there's more than three of the same character in a row", function() {
+    expect(fourInARow("LXXXXVII")).to.equal(true);
+  });
+
+  it("returns false for less than four of the same character in a row", function() {
+    expect(fourInARow("XXVII")).to.equal(false);
+  });
+});

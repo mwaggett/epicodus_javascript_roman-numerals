@@ -113,6 +113,21 @@ var convertNumberToNumerals = function(number) {
   return numeralString;
 }
 
+var fourInARow = function(numeralString) {
+  var sameSymbolInARow = 1;
+  for (var i = 0; i < numeralString.length - 1; i++) {
+    if (numeralString[i] === numeralString[i+1]) {
+        sameSymbolInARow++;
+      if (sameSymbolInARow > 3) {
+        return true;
+      }
+    } else {
+      sameSymbolInARow = 1;
+    }
+  }
+  return false;
+}
+
 
 // $(document).ready(function() {
 //
