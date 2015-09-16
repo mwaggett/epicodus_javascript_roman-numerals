@@ -120,6 +120,7 @@ var convertNumberToNumerals = function(number) {
   return numeralString;
 }
 
+//fourInARow finds the index where there are four letters in a row
 var fourInARow = function(numeralString) {
   var sameSymbolInARow = 1;
   var indexOfFirstOfFourInARow = 0;
@@ -137,29 +138,41 @@ var fourInARow = function(numeralString) {
   return null;
 }
 
+//converts four letters in a row to Roman numerals
 var convertFourInARow = function(numeralString) {
   var i = fourInARow(numeralString);
-  var previousSymbol = numeralString[i-1];
-  if (previousSymbol === romanNumeralsMap().get(5*romanNumeralsMap().get(numeralString[i]))) {
-    var fourToReplace = numeralString[i-1]+numeralString[i]+numeralString[i]+numeralString[i]+numeralString[i];
-    var replacementString = numeralString[i]+romanNumeralsMap().get(romanNumeralsMap().get(numeralString[i])*10)
-  } else {
-    var fourToReplace = numeralString[i]+numeralString[i]+numeralString[i]+numeralString[i];
-    var replacementString = numeralString[i]+romanNumeralsMap().get(romanNumeralsMap().get(numeralString[i])*5)
-  }
-  var romanNumerals = numeralString.replace(fourToReplace, replacementString);
-  return romanNumerals;
-}
 
+    var previousSymbol = numeralString[i-1];
+    if (previousSymbol === romanNumeralsMap().get(5*romanNumeralsMap().get(numeralString[i]))) {
+      var fourToReplace = numeralString[i-1]+numeralString[i]+numeralString[i]+numeralString[i]+numeralString[i];
+      var replacementString = numeralString[i]+romanNumeralsMap().get(romanNumeralsMap().get(numeralString[i])*10)
+    } else {
+      var fourToReplace = numeralString[i]+numeralString[i]+numeralString[i]+numeralString[i];
+      var replacementString = numeralString[i]+romanNumeralsMap().get(romanNumeralsMap().get(numeralString[i])*5)
+    }
+    var romanNumerals = numeralString.replace(fourToReplace, replacementString);
+      if ( fourInARow(romanNumerals) != null){
+        return convertFourInARow(romanNumerals);
+
+      }
+      else{
+        return romanNumerals;
+      }
+  }
 
 $(document).ready(function() {
   $("form#getNumber").submit(function(event) {
+
+    var errorMsg = "Sorry, I can\'t process numbers greater than 3,999.";
     var number = parseInt($("input#number").val());
 
-    //var result = romanNumeral(number);
-
-    $(".output").text(result);
-
+    if (number > 3999){
+    $(".output").text(errorMsg);
+    }
+    else {
+      var result = convertFourInARow(convertNumberToNumerals(number));
+      $(".output").text(result);
+    }
     $("#result").show();
     event.preventDefault();
   });
