@@ -1,16 +1,19 @@
-# Application Name
+# Roman Numerals ~UNFINISHED~
 
-##### _{Brief description of application}, {Date of current version}_
+##### _JavaScript Looping practice for Epicodus, 16 September 2015_
 
-#### By **Molly Waggett**
+#### By **Jennifer Morkunas & Molly Waggett**
 
 ## Description
 
-{This is a detailed description of your application. Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. Do you want other developers to use this code in their apps? Talk about things like that here in simple terms.}
+This page allows a user to enter a number and receive a translation into roman numerals.
+_**Main romanNumeral function doesn't exist yet and therefore web interface is incomplete.**_
 
 ## Setup
 
 * Clone this repository.
+* Open the index.html file in your browser.
+* Go!
 
 ## Technologies Used
 
@@ -21,7 +24,7 @@
 
 ### Legal
 
-Copyright (c) 2015 **Molly Waggett**
+Copyright (c) 2015 **Jennifer Morkuras & Molly Waggett**
 
 This software is licensed under the MIT license.
 
